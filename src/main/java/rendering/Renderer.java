@@ -33,7 +33,7 @@ public class Renderer {
 
     public Renderer() {
         // TODO implement scene using enums in order to determine what demo should be run...
-        scene = new Scene();
+        scene = null;//new Scene();
         queue = prepareTasks();
         statusBar = new StatusBar(queue.size());
 

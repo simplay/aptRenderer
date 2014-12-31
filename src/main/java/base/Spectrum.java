@@ -109,7 +109,7 @@ public class Spectrum {
         g = g / s.g;
         b = b / s.b;
     }
-    
+
     /**
      * get a new squared instance of this spectrum.
      * @param s input spectrum

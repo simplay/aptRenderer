@@ -17,13 +17,13 @@ public abstract class Scene {
     // image pixel height
     protected int height;
 
-    protected Camera camera;
+    //protected Camera camera;
     protected Film film;
-    protected IntegratorFactory integratorFactory;
-    protected SamplerFactory samplerFactory;
-    protected Tonemapper tonemapper;
-    protected Intersectable root;
-    protected LightList lightList;
+    //protected IntegratorFactory integratorFactory;
+    //protected SamplerFactory samplerFactory;
+    //protected Tonemapper tonemapper;
+    //protected Intersectable root;
+    //protected LightList lightList;
 
 
 }
