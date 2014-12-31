@@ -21,8 +21,14 @@ public class Renderer {
     // TODO remove these hard-coded resolutions and make them parameterizable defined within the scene object
     private int width = 100;
     private int height = 100;
+
+    // user specified rendering scene.
     private final Scene scene;
+
+    // task queue used as a shared resource among all threads.
     private final LinkedList<RenderTask> queue;
+
+    // status bar of the renderign process used as a shared resource among all threads.
     private final StatusBar statusBar;
 
     public Renderer() {
@@ -53,6 +59,7 @@ public class Renderer {
 
             }
         }
+        return tasks;
     }
 
     /**
@@ -62,7 +69,7 @@ public class Renderer {
         LinkedList<Thread> threads = new LinkedList<Thread>();
 
         for (int k = 0; k < threadCount; k++) {
-            threads.add(new Thread(new RenderThread(queue), Integer.toString(k)));
+            threads.add(new Thread(new RenderThread(queue, statusBar), Integer.toString(k)));
         }
 
         for (Thread t : threads) {
