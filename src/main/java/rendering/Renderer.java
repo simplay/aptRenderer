@@ -1,5 +1,7 @@
 package rendering;
 
+import base.Scene;
+
 import java.util.LinkedList;
 
 /**
@@ -19,13 +21,38 @@ public class Renderer {
     // TODO remove these hard-coded resolutions and make them parameterizable defined within the scene object
     private int width = 100;
     private int height = 100;
+    private final Scene scene;
     private final LinkedList<RenderTask> queue;
+    private final StatusBar statusBar;
 
     public Renderer() {
-        // TODO init
-        queue = new LinkedList<RenderTask>();
+        // TODO implement scene using enums in order to determine what demo should be run...
+        scene = new Scene();
+        queue = prepareTasks();
+        statusBar = new StatusBar(queue.size());
+
         System.out.println("Starting rendering...");
         start();
+    }
+
+    /**
+     * Task partitioning for rendering process. The image is rendered block-wise.
+     * Each rendering task is a square block within the image of size taskSize.
+     * @return A list of rendering tasks
+     */
+    private LinkedList<RenderTask> prepareTasks() {
+        LinkedList<RenderTask> tasks = new LinkedList<RenderTask>();
+        for (int j = 0; j < (int)Math.ceil((double)height / (double)taskSize); j++) {
+            for (int i = 0; i < (int)Math.ceil((double)width / (double) taskSize); i++) {
+                int left = i*taskSize;
+                int right = Math.min((i+1)*taskSize, width);
+                int bottom = j*taskSize;
+                int top = Math.min((j+1)*taskSize, height);
+
+                tasks.add(new RenderTask(scene, left, right, bottom, top));
+
+            }
+        }
     }
 
     /**

@@ -1,9 +1,11 @@
+package base;
+
 import javax.vecmath.Point3f;
 import javax.vecmath.Tuple3f;
 import javax.vecmath.Vector3f;
 
 /**
- * A Ray is determined by an origin and direction.
+ * A base.Ray is determined by an origin and direction.
  * In our case a ray is given by a set of point fulfilling the parametrization
  * p(t) = origin + t*direction, for any t in |R.
  * For modeling light, we use the concept of rays.

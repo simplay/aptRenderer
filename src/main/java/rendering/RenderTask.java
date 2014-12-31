@@ -1,5 +1,10 @@
 package rendering;
 
+
+import base.Integrator;
+import base.Sampler;
+import base.Scene;
+
 /**
  * Created by simplaY on 31.12.2014.
  */

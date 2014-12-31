@@ -9,9 +9,11 @@ public class RenderThread implements Runnable {
 
     // shared resource that contains all rendering task.
     private final LinkedList<RenderTask> queue;
+    private final StatusBar statusBar;
 
-    public RenderThread(LinkedList<RenderTask> queue) {
+    public RenderThread(LinkedList<RenderTask> queue, StatusBar statusBar) {
         this.queue = queue;
+        this.statusBar = statusBar;
 
     }
 
@@ -26,6 +28,7 @@ public class RenderThread implements Runnable {
 
                 }
             }
+            statusBar.update();
         }
     }
 
