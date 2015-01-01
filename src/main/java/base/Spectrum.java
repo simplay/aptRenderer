@@ -1,8 +1,7 @@
 package base;
 
 /**
- * Stores a spectrum of color values. In this implementation, we work with RGB
- * colors.
+ * A Spectrum is a representation of colors implemented as RGB colors.
  */
 public class Spectrum {
 
@@ -61,7 +60,7 @@ public class Spectrum {
     /**
      * multiply this spectrum
      * by other spectrum component-wise
-     * @param s spectrum
+     * @param s spectrum to multiply component-wise to this spectrum.
      */
     public void mult(Spectrum s) {
         r = r * s.r;
@@ -70,8 +69,8 @@ public class Spectrum {
     }
 
     /**
-     * add another spectrum to this specturm
-     * @param s spectrum
+     * add another spectrum to this spectrum
+     * @param s spectrum to add to this spectrum.
      */
     public void add(Spectrum s) {
         r = r + s.r;
@@ -81,7 +80,7 @@ public class Spectrum {
 
     /**
      * Shift this spectrum by a given scalar value (bias).
-     * @param t scalar
+     * @param t scalar used to shift this spectrum
      */
     public void shift(float t) {
         r = r + t;
@@ -91,7 +90,7 @@ public class Spectrum {
 
     /**
      * subtract spectrum s from this spectrum
-     * @param s spectrum
+     * @param s spectrum to subtract from this spectrum.
      */
     public void sub(Spectrum s) {
         r = r - s.r;
@@ -102,7 +101,7 @@ public class Spectrum {
     /**
      * divide this spectrum component-wise
      * by other spectrum s.
-     * @param s
+     * @param s spectrum to divide by
      */
     public void divide(Spectrum s) {
         r = r / s.r;
@@ -112,10 +111,9 @@ public class Spectrum {
 
     /**
      * get a new squared instance of this spectrum.
-     * @param s input spectrum
      * @return spectrum t = s^2
      */
-    public Spectrum squaredSpectrum() {
+    public Spectrum squared() {
         Spectrum squared = new Spectrum(this);
         squared.mult(squared);
         return squared;
@@ -125,13 +123,13 @@ public class Spectrum {
      * square this spectrum's components.
      */
     public void square() {
-        this.mult(this);
+        mult(this);
     }
 
     /**
-     * Spectrum lies within
-     * @param min
-     * @param max
+     * Components of this spectrum are bounded by given range.
+     * @param min lower tolerated spectrum bound
+     * @param max upper tolerated spectrum bound
      */
     public void clamp(float min, float max) {
         r = Math.min(max, Math.max(min, r));
