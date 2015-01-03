@@ -1,9 +1,7 @@
 package rendering;
 
 
-import base.Integrator;
-import base.Sampler;
-import base.Scene;
+import base.*;
 
 /**
  * Created by simplaY on 31.12.2014.
@@ -15,7 +13,7 @@ public class RenderTask {
     private final int bottom;
     private final Integrator integrator;
     private final Scene scene;
-    private Sampler sampler;
+    private final Sampler sampler;
 
     public RenderTask(Scene scene, int left, int right, int bottom, int top) {
         this.scene = scene;
@@ -23,8 +21,10 @@ public class RenderTask {
         this.right = right;
         this.top = top;
         this.bottom = bottom;
+
         // TODO assign integrator and scene...
         this.integrator = null;
+        this.sampler = null;
     }
 
     public int getLeft() {
@@ -55,5 +55,17 @@ public class RenderTask {
         return sampler;
     }
 
+    public void evaluateSampleAt(int i, int j) {
+        //float[][] samples = integrator.makePixelSamples(sampler, scene.getSPP());
+        //for (int k = 0; k < samples.length; k++) {
+            //Ray primaryRay = scene.getCamera().makeWorldSpaceRay(i, j, samples[k]);
+
+            // Evaluate ray
+            //Spectrum s = integrator.integrate(primaryRay);
+
+            // Write to film
+            //scene.getFilm().addSample((double)i+(double)samples[k][0], (double)j+(double)samples[k][1], s);
+        //}
+    }
 
 }

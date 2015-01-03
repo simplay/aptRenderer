@@ -30,11 +30,7 @@ public class RenderThread implements Runnable {
         }
     }
 
-    private void evaluateSample(RenderTask task, float samples[][], int i, int j) {
-        for (int k = 0; k < samples.length; k++) {
-            // TODO implement me
-        }
-    }
+
 
 
 }
