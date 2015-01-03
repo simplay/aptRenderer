@@ -1,17 +1,15 @@
 package rendering;
 
-import java.util.LinkedList;
-
 /**
  * Created by simplaY on 31.12.2014.
  */
 public class RenderThread implements Runnable {
 
     // shared resource that contains all rendering task.
-    private final LinkedList<RenderTask> queue;
+    private final TaskQueue queue;
     private final StatusBar statusBar;
 
-    public RenderThread(LinkedList<RenderTask> queue, StatusBar statusBar) {
+    public RenderThread(TaskQueue queue, StatusBar statusBar) {
         this.queue = queue;
         this.statusBar = statusBar;
 
@@ -20,7 +18,7 @@ public class RenderThread implements Runnable {
     @Override
     public void run() {
         while(true) {
-            RenderTask task = acquireTask();
+            RenderTask task = queue.acquireTask();
             if (task == null) break;
 
             for (int j = task.getBottom(); j < task.getTop(); j++) {
@@ -38,10 +36,5 @@ public class RenderThread implements Runnable {
         }
     }
 
-    private RenderTask acquireTask() {
-        synchronized (queue) {
-            if (queue.size() == 0) return null;
-            return queue.poll();
-        }
-    }
+
 }
