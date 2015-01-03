@@ -21,8 +21,6 @@ public class StatusBar {
     // Rounded up fraction between total number of tasks and TOKEN_COUNT
     private final int stepSize;
 
-
-
     /**
      * Constructor of status bar.
      * @param totalTaskCount total number of rendering tasks.

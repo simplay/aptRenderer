@@ -23,7 +23,11 @@ public class RenderThread implements Runnable {
 
             for (int j = task.getBottom(); j < task.getTop(); j++) {
                 for (int i = task.getLeft(); i < task.getRight(); i++) {
-
+                    try {
+                        Thread.currentThread().sleep((long) (5));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
             statusBar.update();

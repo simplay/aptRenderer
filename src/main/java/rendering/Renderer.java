@@ -31,14 +31,23 @@ public class Renderer {
     // status bar of the renderign process used as a shared resource among all threads.
     private final StatusBar statusBar;
 
+    // measures the time in miliseconds to process all render tasks.
+    private final Timer renderTaskTimer;
+
+    // measures the total time in miliseconds spent in the renderer.
+    private final Timer totalTimer;
+
     public Renderer() {
+        totalTimer = new Timer();
+        renderTaskTimer = new Timer();
+
         // TODO implement scene using enums in order to determine what demo should be run...
         scene = null;//new Scene();
         queue = prepareTasks();
         statusBar = new StatusBar(queue.size());
 
         System.out.println("Starting rendering...");
-        start();
+        this.start();
     }
 
     /**
@@ -71,6 +80,7 @@ public class Renderer {
             threads.add(new Thread(new RenderThread(queue, statusBar), Integer.toString(k)));
         }
 
+        renderTaskTimer.reset();
         for (Thread t : threads) {
             t.start();
         }
@@ -82,11 +92,17 @@ public class Renderer {
                 e.printStackTrace();
             }
         }
-        System.out.println("finished rendering...");
 
-        System.out.println("Writing image...");
+
+        long renderTaskTime = renderTaskTimer.timeElapsed();
         // TODO write to image buffer
-        System.out.println("Finished whole processing...");
+        long renderTime = totalTimer.timeElapsed();
 
+        System.out.println("finished rendering...");
+        System.out.println("Writing image...");
+        System.out.println("Finished whole processing...");
+        System.out.println("Total Time: " + renderTime + " ms ");
+        System.out.println("Render Task Time: " + renderTaskTime + " ms ");
     }
+
 }
