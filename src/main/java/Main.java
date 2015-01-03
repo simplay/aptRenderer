@@ -1,3 +1,5 @@
+import rendering.Renderer;
+
 /**
  * Format
  *  -width WIDTH INTEGER
@@ -8,6 +10,6 @@
 public class Main {
     public static void main(String[] args) {
         System.out.println(args[1]);
-       // new Renderer();
+        new Renderer();
     }
 }

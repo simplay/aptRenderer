@@ -15,14 +15,20 @@ public class StatusBar {
     // Current number of finished tasks.
     private int finishedTasks = 0;
 
+    // total number of tasks
+    private final int totalTaskCount;
+
     // Rounded up fraction between total number of tasks and TOKEN_COUNT
     private final int stepSize;
+
+
 
     /**
      * Constructor of status bar.
      * @param totalTaskCount total number of rendering tasks.
      */
     public StatusBar(int totalTaskCount) {
+        this.totalTaskCount = totalTaskCount;
         this.stepSize = (int)Math.ceil(totalTaskCount/TOKEN_COUNT);
     }
 
@@ -34,6 +40,9 @@ public class StatusBar {
         finishedTasks++;
         if (finishedTasks % stepSize == 1) {
             System.out.printf(TOKEN);
+        }
+        if (finishedTasks == totalTaskCount) {
+            System.out.println();
         }
     }
 }
