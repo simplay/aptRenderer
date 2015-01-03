@@ -2,6 +2,10 @@ package rendering;
 
 import base.Scene;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 
 /**
@@ -92,10 +96,14 @@ public class Renderer {
                 e.printStackTrace();
             }
         }
-
-
         long renderTaskTime = renderTaskTimer.timeElapsed();
-        // TODO write to image buffer
+
+        BufferedImage frame = null;
+        try {
+            ImageIO.write(frame, "png", new File(scene.getFilePathName()+".png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         long renderTime = totalTimer.timeElapsed();
 
         System.out.println("finished rendering...");

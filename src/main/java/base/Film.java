@@ -1,7 +1,7 @@
 package base;
 
 /**
- * A film stores a 2D grid of {@link rt.Spectrum} representing an image.
+ * A film stores a 2D grid of {@link base.Spectrum} representing an image.
  * Rendered samples can be added one by one to a film. Samples are
  * filtered using some filter (depending on the implementation of this
  * interface) when added.
@@ -20,21 +20,18 @@ public interface Film {
 
     /**
      * Returns the image stored in the film.
-     *
      * @return the image
      */
     public Spectrum[][] getImage();
 
     /**
      * Returns width (in pixels) of film.
-     *
      * @return width in pixels
      */
     public int getWidth();
 
     /**
      * Returns height (in pixels) of film.
-     *
      * @return height in pixels
      */
     public int getHeight();
