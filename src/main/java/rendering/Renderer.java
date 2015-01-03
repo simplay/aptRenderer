@@ -26,7 +26,7 @@ public class Renderer {
     private final Scene scene;
 
     // task queue used as a shared resource among all threads.
-    private final LinkedList<RenderTask> queue;
+    private final TaskQueue queue;
 
     // status bar of the renderign process used as a shared resource among all threads.
     private final StatusBar statusBar;
@@ -46,8 +46,8 @@ public class Renderer {
      * Each rendering task is a square block within the image of size taskSize.
      * @return A list of rendering tasks
      */
-    private LinkedList<RenderTask> prepareTasks() {
-        LinkedList<RenderTask> tasks = new LinkedList<RenderTask>();
+    private TaskQueue prepareTasks() {
+        TaskQueue tasks = new TaskQueue();
         for (int j = 0; j < (int)Math.ceil((double)height / (double)taskSize); j++) {
             for (int i = 0; i < (int)Math.ceil((double)width / (double) taskSize); i++) {
                 int left = i*taskSize;
@@ -56,7 +56,6 @@ public class Renderer {
                 int top = Math.min((j+1)*taskSize, height);
 
                 tasks.add(new RenderTask(scene, left, right, bottom, top));
-
             }
         }
         return tasks;
