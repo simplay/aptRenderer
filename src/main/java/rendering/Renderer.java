@@ -28,13 +28,13 @@ public class Renderer {
     // task queue used as a shared resource among all threads.
     private final TaskQueue queue;
 
-    // status bar of the renderign process used as a shared resource among all threads.
+    // status bar of the rendering process used as a shared resource among all threads.
     private final StatusBar statusBar;
 
-    // measures the time in miliseconds to process all render tasks.
+    // measures the time in milliseconds to process all render tasks.
     private final Timer renderTaskTimer;
 
-    // measures the total time in miliseconds spent in the renderer.
+    // measures the total time in milliseconds spent in the renderer.
     private final Timer totalTimer;
 
     public Renderer() {
