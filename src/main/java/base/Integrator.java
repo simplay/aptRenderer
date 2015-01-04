@@ -10,7 +10,7 @@ package base;
  * Various implementations of this interface may make different
  * approximations and simplifications regarding the solution
  * of the rendering equation.
- * 
+ *
  * Created by simplaY on 31.12.2014.
  */
 public interface Integrator {

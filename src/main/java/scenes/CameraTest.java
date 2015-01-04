@@ -5,6 +5,8 @@ import base.Scene;
 import cameras.PinholeCamera;
 import imageprocessing.BoxfilterFilm;
 import imageprocessing.ClampTonemapper;
+import integrators.DebugIntegratorFactory;
+import samplers.OneSamplerFactory;
 
 import javax.vecmath.Vector3f;
 
@@ -17,8 +19,8 @@ public class CameraTest extends Scene{
         this.filePathName = "camera_test_scene";
         this.film = new BoxfilterFilm(width, height);
         this.tonemapper = new ClampTonemapper();
-
-
+        this.integratorFactory = new DebugIntegratorFactory();
+        this.samplerFactory = new OneSamplerFactory();
     }
 
     @Override
