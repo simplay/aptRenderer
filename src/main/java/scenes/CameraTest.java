@@ -6,6 +6,7 @@ import cameras.PinholeCamera;
 import imageprocessing.BoxfilterFilm;
 import imageprocessing.ClampTonemapper;
 import integrators.DebugIntegratorFactory;
+import intersectables.Plane;
 import samplers.OneSamplerFactory;
 
 import javax.vecmath.Vector3f;
@@ -21,6 +22,9 @@ public class CameraTest extends Scene{
         this.tonemapper = new ClampTonemapper();
         this.integratorFactory = new DebugIntegratorFactory();
         this.samplerFactory = new OneSamplerFactory();
+
+        Plane p1 = new Plane(new Vector3f(1.f, 0.f, 0.f), 1.f);
+        root = p1;
     }
 
     @Override

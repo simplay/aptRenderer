@@ -22,9 +22,11 @@ public class RenderTask {
         this.top = top;
         this.bottom = bottom;
 
-        // TODO assign integrator and scene...
-        this.integrator = null;
-        this.sampler = null;
+        // The render task has its own sampler and integrator. This way threads don't
+        // compete for access to a shared sampler/integrator, and thread contention
+        // can be reduced.
+        this.integrator = scene.getIntegratorFactory().make(scene);
+        this.sampler = scene.getSamplerFactory().make();;
     }
 
     public int getLeft() {
@@ -56,16 +58,16 @@ public class RenderTask {
     }
 
     public void evaluateSampleAt(int i, int j) {
-        //float[][] samples = integrator.makePixelSamples(sampler, scene.getSPP());
-        //for (int k = 0; k < samples.length; k++) {
-            //Ray primaryRay = scene.getCamera().makeWorldSpaceRay(i, j, samples[k]);
+        float[][] samples = integrator.makePixelSamples(sampler, scene.getSpp());
+        for (int k = 0; k < samples.length; k++) {
+            Ray primaryRay = scene.getCamera().makeWorldSpaceRay(i, j, samples[k]);
 
             // Evaluate ray
-            //Spectrum s = integrator.integrate(primaryRay);
+            Spectrum s = integrator.integrate(primaryRay);
 
             // Write to film
-            //scene.getFilm().addSample((double)i+(double)samples[k][0], (double)j+(double)samples[k][1], s);
-        //}
+            scene.getFilm().addSample((double)i+(double)samples[k][0], (double)j+(double)samples[k][1], s);
+        }
     }
 
 }

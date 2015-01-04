@@ -28,19 +28,10 @@ public class RenderThread implements Runnable {
 
             for (int j = task.getBottom(); j < task.getTop(); j++) {
                 for (int i = task.getLeft(); i < task.getRight(); i++) {
-                    this.runDummyTask();
+                    task.evaluateSampleAt(i,j);
                 }
             }
             statusBar.update();
-        }
-    }
-
-    // TODO remove me.
-    private void runDummyTask() {
-        try {
-            Thread.currentThread().sleep((long) (5));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
 

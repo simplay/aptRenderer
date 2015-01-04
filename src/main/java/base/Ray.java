@@ -1,7 +1,6 @@
 package base;
 
 import javax.vecmath.Point3f;
-import javax.vecmath.Tuple3f;
 import javax.vecmath.Vector3f;
 
 /**
@@ -99,11 +98,11 @@ public class Ray {
         return t;
     }
 
-    public Tuple3f getOrigin() {
+    public Point3f getOrigin() {
         return origin;
     }
 
-    public Tuple3f getDirection() {
+    public Vector3f getDirection() {
         return direction;
     }
 
