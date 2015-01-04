@@ -1,5 +1,6 @@
 package scenes;
 
+import base.Camera;
 import base.Scene;
 
 /**
@@ -10,5 +11,10 @@ public class DummyTest extends Scene {
         super(width, height, spp);
         this.filePathName = "dummy_test_scene";
         // TODO define scene
+    }
+
+    @Override
+    public Camera initializeCamera() {
+        return null;
     }
 }

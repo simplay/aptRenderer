@@ -53,7 +53,10 @@ public abstract class Scene {
         this.width = width;
         this.height = height;
         this.spp = spp;
+        camera = this.initializeCamera();
     }
+
+    public abstract Camera initializeCamera();
 
     public int getSpp() {
         return spp;
