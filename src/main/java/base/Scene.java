@@ -6,7 +6,7 @@ package base;
  */
 public abstract class Scene {
 
-    //
+    // base path for rendered images. It is still possible to specify sub-paths in the file-path name.
     private final String basePath = "output/";
 
     // Path and name of rendered image file.
@@ -42,10 +42,6 @@ public abstract class Scene {
     // Scene light list storing all light geometries.
     protected LightList lightList;
 
-    public String getFilePathName() {
-        return basePath+filePathName;
-    }
-
     /**
      * Every scene has to have specified a width, height and spp.
      * @param width image width.
@@ -60,6 +56,10 @@ public abstract class Scene {
     }
 
     public abstract Camera initializeCamera();
+
+    public String getFilePathName() {
+        return basePath+filePathName;
+    }
 
     public int getSpp() {
         return spp;
