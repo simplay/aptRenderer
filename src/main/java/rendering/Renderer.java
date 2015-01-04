@@ -22,9 +22,11 @@ public class Renderer {
     // Each rendering task renders a square image block of this size.
     private final int taskSize = 4;
 
-    // TODO remove these hard-coded resolutions and make them parameterizable defined within the scene object
-    private int width = 100;
-    private int height = 100;
+    // width of image to render.
+    private final int width;
+
+    // height of image to render.
+    private final int height;
 
     // user specified rendering scene.
     private final Scene scene;
@@ -41,12 +43,14 @@ public class Renderer {
     // measures the total time in milliseconds spent in the renderer.
     private final Timer totalTimer;
 
-    public Renderer() {
+    public Renderer(Scene scene) {
         totalTimer = new Timer();
         renderTaskTimer = new Timer();
 
-        // TODO implement scene using enums in order to determine what demo should be run...
-        scene = null;//new Scene();
+        this.scene = scene;
+        this.width = scene.getWidth();
+        this.height = scene.getHeight();
+
         queue = prepareTasks();
         statusBar = new StatusBar(queue.size());
 
@@ -98,7 +102,7 @@ public class Renderer {
         }
         long renderTaskTime = renderTaskTimer.timeElapsed();
 
-        BufferedImage frame = null;
+        BufferedImage frame = scene.getTonemapper().process(scene.getFilm());
         try {
             ImageIO.write(frame, "png", new File(scene.getFilePathName()+".png"));
         } catch (IOException e) {

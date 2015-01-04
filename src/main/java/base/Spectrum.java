@@ -146,4 +146,16 @@ public class Spectrum {
     public float luminance() {
         return 0.299f*r + 0.587f*g + 0.114f*b;
     }
+
+    /**
+     * Get normalized and clamped RGB value represented as int
+     * We assume that each color channel is encoded as 8bit number
+     * @return 24 rgb color representation
+     */
+    public int normalizedClamped24BitRGB() {
+        Spectrum s = new Spectrum(this);
+        s.clamp(0,1);
+        return ((int)(255.f*s.r) << 16) | ((int)(255.f*s.g) << 8) | ((int)(255.f*s.b) << 0);
+
+    }
 }

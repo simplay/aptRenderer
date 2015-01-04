@@ -1,4 +1,4 @@
-import base.Scene;
+import rendering.Renderer;
 
 /**
  * Format
@@ -11,8 +11,6 @@ import base.Scene;
 public class Main {
     public static void main(String[] args) {
         RenderOptions ro = new RenderOptions(args);
-        Scene s =ro.getSelectedScene();
-        System.out.println(s.getFilePathName());
-        //new Renderer();
+        new Renderer(ro.getSelectedScene());
     }
 }
