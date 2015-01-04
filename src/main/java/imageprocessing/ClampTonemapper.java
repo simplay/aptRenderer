@@ -1,4 +1,4 @@
-package tonemappers;
+package imageprocessing;
 
 import base.Film;
 import base.Tonemapper;
