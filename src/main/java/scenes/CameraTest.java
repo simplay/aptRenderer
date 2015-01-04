@@ -1,6 +1,7 @@
 package scenes;
 
 import base.Camera;
+import base.Intersectable;
 import base.Scene;
 import cameras.PinholeCamera;
 import imageprocessing.BoxfilterFilm;
@@ -22,9 +23,6 @@ public class CameraTest extends Scene{
         this.tonemapper = new ClampTonemapper();
         this.integratorFactory = new DebugIntegratorFactory();
         this.samplerFactory = new OneSamplerFactory();
-
-        Plane p1 = new Plane(new Vector3f(1.f, 0.f, 0.f), 1.f);
-        root = p1;
     }
 
     @Override
@@ -35,5 +33,10 @@ public class CameraTest extends Scene{
         float fov = 60.f;
         float aspect = width / height;
         return new PinholeCamera(eye, lookAt, up, fov, aspect, width, height);
+    }
+
+    @Override
+    public Intersectable initializeGeometries() {
+        return new Plane(new Vector3f(0.f, 1.f, 0.f), 1.f);
     }
 }

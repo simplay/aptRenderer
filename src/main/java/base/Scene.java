@@ -53,9 +53,12 @@ public abstract class Scene {
         this.height = height;
         this.spp = spp;
         camera = this.initializeCamera();
+        root = this.initializeGeometries();
     }
 
-    public abstract Camera initializeCamera();
+    protected abstract Camera initializeCamera();
+
+    protected abstract Intersectable initializeGeometries();
 
     public String getFilePathName() {
         return basePath+filePathName;

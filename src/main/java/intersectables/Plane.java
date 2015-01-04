@@ -30,7 +30,6 @@ public class Plane implements Intersectable {
         float cos_norm_dir = normal.dot(r.getDirection());
         if (cos_norm_dir != 0f) {
             float t = -(normal.dot(new Vector3f(r.getOrigin())) + distance) / cos_norm_dir;
-            System.out.println(r.getOrigin().toString());
             Vector3f position = new Vector3f(r.getDirection());
             position.scaleAdd(t, r.getOrigin());
             Vector3f retNormal = new Vector3f(normal);

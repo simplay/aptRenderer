@@ -1,6 +1,7 @@
 package scenes;
 
 import base.Camera;
+import base.Intersectable;
 import base.Scene;
 
 /**
@@ -15,6 +16,11 @@ public class DummyTest extends Scene {
 
     @Override
     public Camera initializeCamera() {
+        return null;
+    }
+
+    @Override
+    protected Intersectable initializeGeometries() {
         return null;
     }
 }
