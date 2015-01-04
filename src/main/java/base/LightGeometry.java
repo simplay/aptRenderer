@@ -12,5 +12,4 @@ public interface LightGeometry extends Intersectable {
      */
     public HitRecord sample(float[] s);
 
-
 }

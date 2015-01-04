@@ -6,33 +6,53 @@ package base;
  */
 public abstract class Scene {
 
-    // name of rendered image file
+    // Path and name of rendered image file.
     protected String filePathName;
 
-    // samples per pixel
+    // Samples per pixel used for rendering.
     protected int spp;
 
-    // image pixel width
+    // Image pixel width.
     protected int width;
 
-    // image pixel height
+    // Image pixel height.
     protected int height;
 
+    // Represents the eye of a viewer.
     protected Camera camera;
+
+    // Some kind filter applied to rendered image.
     protected Film film;
 
-
-    // TODO create their getters
+    // Initialized a particular integrator.
     protected IntegratorFactory integratorFactory;
+
+    // Defines a particular sampler used for sampling image locations.
     protected SamplerFactory samplerFactory;
+
+    // Defines how to map the color the rendered image to an 8-bit monitor.
     protected Tonemapper tonemapper;
 
-    //protected Intersectable root;
-    //protected LightList lightList;
+    // Top level scene object encapsulating hierarchically all scene objects.
+    protected Intersectable root;
 
+    // Scene light list storing all light geometries.
+    protected LightList lightList;
 
     public String getFilePathName() {
         return filePathName;
+    }
+
+    /**
+     * Every scene has to have specified a width, height and spp.
+     * @param width image width.
+     * @param height image height.
+     * @param spp samples per pixels.
+     */
+    public Scene(int width, int height, int spp) {
+        this.width = width;
+        this.height = height;
+        this.spp = spp;
     }
 
     public int getSpp() {
@@ -55,5 +75,24 @@ public abstract class Scene {
         return film;
     }
 
+    public IntegratorFactory getIntegratorFactory() {
+        return integratorFactory;
+    }
+
+    public SamplerFactory getSamplerFactory() {
+        return samplerFactory;
+    }
+
+    public Tonemapper getTonemapper() {
+        return tonemapper;
+    }
+
+    public Intersectable getRoot() {
+        return root;
+    }
+
+    public LightList getLightList() {
+        return lightList;
+    }
 
 }
