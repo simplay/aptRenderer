@@ -48,3 +48,8 @@ crashlytics-build.properties
 # java
 *.class
 *.MF
+
+# renderings
+output/**/*.png
+output/*.png
+

@@ -6,6 +6,9 @@ package base;
  */
 public abstract class Scene {
 
+    //
+    private final String basePath = "output/";
+
     // Path and name of rendered image file.
     protected String filePathName;
 
@@ -40,7 +43,7 @@ public abstract class Scene {
     protected LightList lightList;
 
     public String getFilePathName() {
-        return filePathName;
+        return basePath+filePathName;
     }
 
     /**
