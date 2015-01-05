@@ -1,5 +1,5 @@
 import base.Scene;
-import scenes.SceneTask;
+import constants.SceneTask;
 
 /**
  * Created by simplaY on 31.12.2014.

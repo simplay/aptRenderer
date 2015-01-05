@@ -1,6 +1,9 @@
-package scenes;
+package constants;
 
 import base.Scene;
+import scenes.CameraTest;
+import scenes.DummyTest;
+
 import java.util.*;
 import java.lang.reflect.Constructor;
 
