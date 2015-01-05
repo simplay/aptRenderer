@@ -7,6 +7,7 @@ import cameras.PinholeCamera;
 import imageprocessing.BoxfilterFilm;
 import imageprocessing.ClampTonemapper;
 import integrators.DebugIntegratorFactory;
+import intersectables.IntersectableList;
 import intersectables.Plane;
 import samplers.OneSamplerFactory;
 
@@ -37,6 +38,12 @@ public class CameraTest extends Scene{
 
     @Override
     public Intersectable initializeGeometries() {
-        return new Plane(new Vector3f(0.f, 1.f, 0.f), 1.f);
+        IntersectableList intersectableList = new IntersectableList();
+        intersectableList.add(new Plane(new Vector3f(1.f, 0.f, 0.f), 1.f));
+        intersectableList.add(new Plane(new Vector3f(-1.f, 0.f, 0.f), 1.f));
+        intersectableList.add(new Plane(new Vector3f(0.f, 1.f, 0.f), 1.f));
+        intersectableList.add(new Plane(new Vector3f(0.f, -1.f, 0.f), 1.f));
+        intersectableList.add(new Plane(new Vector3f(0.f, 0.f, 1.f), 1.f));
+        return intersectableList;
     }
 }

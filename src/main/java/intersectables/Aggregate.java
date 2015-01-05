@@ -13,46 +13,27 @@ import java.util.Iterator;
  */
 public abstract class Aggregate implements Intersectable {
 
-    // current best ray line parameter closest to camera.
-    // Remember: this parameter is used to determine the intersection position.
-    private float closestLineParam;
-
-    // Current closest hit point when checking for intersection
-    private HitRecord closestHitRecord;
-
-    // Threshold for determining intersection.
-    private final float EPS = 1E-5f;
-
     @Override
     public HitRecord intersect(Ray ray) {
-        this.flush();
+        // Resets previous determined {@link base.HitRecord} and line_param value to to default values.
+        HitRecord closestHitRecord = HitSentinel.getInstance();
+        float closestLineParam = Float.MAX_VALUE;
+
         Iterator<Intersectable> iterator = iterator();
-        while (iterator.hasNext()) {
+        while(iterator.hasNext()) {
             Intersectable sceneObject = iterator.next();
-            HitRecord currentHit = sceneObject.intersect(ray);
-            if (currentHit.hasIntersection()) {
-                this.relax(currentHit);
+            HitRecord hit = sceneObject.intersect(ray);
+
+            if (hit.hasIntersection()) {
+
+                // relax values: Update closest hit-record if a closer has found in aggregated list.
+                if (hit.getT() < closestLineParam && hit.getT() > 0f) {
+                        closestLineParam = hit.getT();
+                        closestHitRecord = hit;
+                }
             }
         }
         return closestHitRecord;
-    }
-
-    /**
-     * Resets previous determined {@link base.HitRecord} and line_param value to to default values.
-     */
-    private void flush() {
-        closestLineParam = Float.MAX_VALUE;
-        closestHitRecord = HitSentinel.getInstance();
-    }
-
-    /**
-     * Update closest hit-record if a closer has found in aggregated list.
-     */
-    private void relax(HitRecord hit) {
-        if (hit.getT() < closestLineParam && hit.getT() > EPS) {
-            closestLineParam = hit.getT();
-            closestHitRecord = hit;
-        }
     }
 
     /**

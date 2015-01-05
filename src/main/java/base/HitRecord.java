@@ -207,5 +207,5 @@ public class HitRecord {
     public void setProbablity(float probablity) {
         this.probablity = probablity;
     }
-    
+
 }
