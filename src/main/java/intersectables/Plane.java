@@ -1,11 +1,10 @@
 package intersectables;
 
-import base.HitRecord;
-import base.Intersectable;
-import base.Material;
-import base.Ray;
+import base.*;
 import constants.HitSentinel;
+import materials.DiffuseMaterial;
 
+import javax.vecmath.Point3f;
 import javax.vecmath.Vector3f;
 
 /**
@@ -21,9 +20,7 @@ public class Plane implements Intersectable {
         this.normal = normal;
         this.normal.normalize();
         this.distance = distance;
-
-        // TODO define materials and assign them.
-        this.material = null;
+        this.material = new DiffuseMaterial(new Spectrum(1.f));
     }
 
     @Override
@@ -31,7 +28,7 @@ public class Plane implements Intersectable {
         float cos_norm_dir = normal.dot(r.getDirection());
         if (cos_norm_dir != 0f) {
             float t = -(normal.dot(new Vector3f(r.getOrigin())) + distance) / cos_norm_dir;
-            Vector3f position = new Vector3f(r.getDirection());
+            Point3f position = new Point3f(r.getDirection());
             position.scaleAdd(t, r.getOrigin());
             Vector3f retNormal = new Vector3f(normal);
             // wIn is incident direction; convention is that it points away from surface

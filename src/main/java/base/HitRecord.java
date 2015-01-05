@@ -12,7 +12,7 @@ public class HitRecord {
     /**
      * Hit position.
      */
-    private Tuple3f position;
+    private Point3f position;
 
     /**
      * Normal at hit point.
@@ -61,6 +61,9 @@ public class HitRecord {
      */
     private Matrix3f TBS;
 
+    /**
+     * Was there an intersection with a surface?
+     */
     protected boolean isIntersecting = true;
 
 
@@ -76,7 +79,7 @@ public class HitRecord {
      * @param v second texture coordinate at hit point.
      * @param tangent tangent vector at hit point.
      */
-    public HitRecord(float t, Tuple3f position, Vector3f normal, Vector3f w,
+    public HitRecord(float t, Point3f position, Vector3f normal, Vector3f w,
                      Intersectable intersectable, Material material, float u, float v, Vector3f tangent) {
         this.t = t;
         this.position = position;
@@ -106,8 +109,19 @@ public class HitRecord {
      * @param u first texture coordinate at hit point
      * @param v second texture coordinate at hit point
      */
-    public HitRecord(float t, Tuple3f position, Vector3f normal, Vector3f w, Intersectable intersectable, Material material, float u, float v) {
+    public HitRecord(float t, Point3f position, Vector3f normal, Vector3f w, Intersectable intersectable, Material material, float u, float v) {
         this(t, position, normal, w, intersectable, material, u, v, estimatedTangent());
+    }
+
+    /**
+     * Constructor Hit record for Sampling Light Sources.
+     * @param position hit point at surface
+     * @param material material at hit position
+     * @param probablity
+     */
+    public HitRecord(Point3f position, Material material, float probablity) {
+        this(0f, position, new Vector3f(), new Vector3f(), null, material, 0f, 0f, new Vector3f());
+        this.probablity = probablity;
     }
 
     /**
@@ -116,7 +130,6 @@ public class HitRecord {
     protected HitRecord() {
         isIntersecting = false;
     }
-
 
     /**
      * Was there an intersection?
@@ -160,7 +173,7 @@ public class HitRecord {
         return TBS;
     }
 
-    public Tuple3f getPosition() {
+    public Point3f getPosition() {
         return position;
     }
 

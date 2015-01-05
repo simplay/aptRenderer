@@ -1,14 +1,13 @@
 package scenes;
 
-import base.Camera;
-import base.Intersectable;
-import base.Scene;
+import base.*;
 import cameras.PinholeCamera;
 import imageprocessing.BoxfilterFilm;
 import imageprocessing.ClampTonemapper;
-import integrators.DebugIntegratorFactory;
+import integrators.PointLightIntegratorFactory;
 import intersectables.IntersectableList;
 import intersectables.Plane;
+import lightsources.PointLight;
 import samplers.OneSamplerFactory;
 
 import javax.vecmath.Vector3f;
@@ -22,8 +21,13 @@ public class CameraTest extends Scene{
         this.filePathName = "camera_test_scene";
         this.film = new BoxfilterFilm(width, height);
         this.tonemapper = new ClampTonemapper();
-        this.integratorFactory = new DebugIntegratorFactory();
+        this.integratorFactory = new PointLightIntegratorFactory();
         this.samplerFactory = new OneSamplerFactory();
+        
+        LightGeometry pointLight = new PointLight(new Vector3f(0.f, 0.f, 3.f),
+                new Spectrum(10.f, 10.f, 10.f));
+        lightList = new LightList();
+        lightList.add(pointLight);
     }
 
     @Override
