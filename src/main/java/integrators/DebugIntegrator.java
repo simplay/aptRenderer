@@ -23,7 +23,7 @@ public class DebugIntegrator implements Integrator {
     @Override
     public Spectrum integrate(Ray r) {
         HitRecord hitRecord = scene.getIntersectable().intersect(r);
-        if (hitRecord != null) {
+        if (hitRecord.hasIntersection()) {
 
             // hit point in front of ray origin
             if(hitRecord.getT() > 0.f) {

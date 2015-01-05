@@ -61,6 +61,8 @@ public class HitRecord {
      */
     private Matrix3f TBS;
 
+    protected boolean isIntersecting = true;
+
 
     /**
      * Constructor Hit record.
@@ -106,6 +108,22 @@ public class HitRecord {
      */
     public HitRecord(float t, Tuple3f position, Vector3f normal, Vector3f w, Intersectable intersectable, Material material, float u, float v) {
         this(t, position, normal, w, intersectable, material, u, v, estimatedTangent());
+    }
+
+    /**
+     * used for creating a sentinel
+     */
+    protected HitRecord() {
+        isIntersecting = false;
+    }
+
+
+    /**
+     * Was there an intersection?
+     * @return a boolean indicating whether there was an intersection
+     */
+    public boolean hasIntersection() {
+        return isIntersecting;
     }
 
     /**
@@ -189,4 +207,5 @@ public class HitRecord {
     public void setProbablity(float probablity) {
         this.probablity = probablity;
     }
+    
 }

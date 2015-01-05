@@ -4,6 +4,7 @@ import base.HitRecord;
 import base.Intersectable;
 import base.Material;
 import base.Ray;
+import constants.HitSentinel;
 
 import javax.vecmath.Vector3f;
 
@@ -41,6 +42,6 @@ public class Plane implements Intersectable {
                 return new HitRecord(t, position, retNormal, wIn, this, material, 0.f, 0.f);
             }
         }
-        return null;
+        return HitSentinel.getInstance();
     }
 }
