@@ -4,18 +4,12 @@ package integrators;
  * Created by simplaY on 05.01.2015.
  */
 
-        import java.util.Iterator;
-        import javax.vecmath.*;
-        import base.HitRecord;
-        import base.Integrator;
-        import base.Intersectable;
-        import base.LightList;
-        import base.LightGeometry;
-        import base.Ray;
-        import base.Sampler;
-        import base.Scene;
-        import base.Spectrum;
-        import util.StaticVecmath;
+        import base.*;
+import util.VectorMath;
+
+import javax.vecmath.Point3f;
+import javax.vecmath.Vector3f;
+import java.util.Iterator;
 
 public class PointLightIntegrator implements Integrator {
 
@@ -69,7 +63,7 @@ public class PointLightIntegrator implements Integrator {
         HitRecord shadowHit = root.intersect(shadowRay);
 
         if (shadowHit != null) {
-            float distShadHitViewHit2 = StaticVecmath.dist2(shadowHit.getPosition(), hitPosition);
+            float distShadHitViewHit2 = VectorMath.dist2(shadowHit.getPosition(), hitPosition);
             if (shadowHit.getMaterial().castsShadows() && distShadHitViewHit2 < eps) {
                 isShaddowed = true;
             }
@@ -88,7 +82,7 @@ public class PointLightIntegrator implements Integrator {
         // Make direction from hit point to light source position;
         // this is only supposed to work with point lights
         HitRecord lightHit = lightSource.sample(null);
-        Vector3f lightDir = StaticVecmath.sub(lightHit.getPosition(), hitRecord.getPosition());
+        Vector3f lightDir = VectorMath.sub(lightHit.getPosition(), hitRecord.getPosition());
 
         float d2 = lightDir.lengthSquared();
         lightDir.normalize();
@@ -102,7 +96,7 @@ public class PointLightIntegrator implements Integrator {
         // shading: brdf * emission * ndotl * geometry term
         Spectrum contribution = new Spectrum(brdfValue);
 
-        Vector3f L = StaticVecmath.negate(lightDir);
+        Vector3f L = VectorMath.negate(lightDir);
         Spectrum lightEmission = lightHit.getMaterial().evaluateEmission(lightHit, L);
         contribution.mult(lightEmission);
 
