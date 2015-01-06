@@ -4,7 +4,7 @@ package integrators;
  * Created by simplaY on 05.01.2015.
  */
 
-        import base.*;
+import base.*;
 import util.VectorMath;
 
 import javax.vecmath.Point3f;
@@ -13,33 +13,36 @@ import java.util.Iterator;
 
 public class PointLightIntegrator implements Integrator {
 
-    private LightList lightList;
-    private Intersectable root;
+    private final LightList lightList;
+    private final Intersectable root;
 
+    /**
+     * Integrate a given scene.
+     * @param scene Scene we want to apply our integrator.
+     */
     public PointLightIntegrator(Scene scene) {
         this.lightList = scene.getLightList();
         this.root = scene.getIntersectable();
     }
 
     /**
-     * Basic Point Light integrator
-     * iterates over the light sources and accumulates
-     * their BRDF contributions.
-     * Performs shading.
+     * Basic Point Light integrator iterates over the light sources and accumulates
+     * their BRDF contributions. Performs shading.
      * No reflection, refraction effects modeled
      * No area light sources
-     * @param CameraRay primary camera ray
+     * @param cameraRay primary camera ray
      * @return total contribution of this primary ray
      */
-    public Spectrum integrate(Ray CameraRay) {
-        HitRecord intersectionsEyeScene = root.intersect(CameraRay);
+    public Spectrum integrate(Ray cameraRay) {
+        HitRecord intersectionsEyeScene = root.intersect(cameraRay);
         Spectrum totalContribution = new Spectrum(0.f);
         if (intersectionsEyeScene.hasIntersection()) {
+
             // Iterate over all light sources
             Iterator<LightGeometry> lightSources = lightList.iterator();
             while (lightSources.hasNext()) {
                 LightGeometry lightSource = lightSources.next();
-                Spectrum currentContribution = getContributionOf(lightSource, intersectionsEyeScene, CameraRay.getT());
+                Spectrum currentContribution = getContributionOf(lightSource, intersectionsEyeScene, cameraRay.getT());
                 totalContribution.add(currentContribution);
             }
         }
@@ -62,7 +65,7 @@ public class PointLightIntegrator implements Integrator {
         Ray shadowRay = new Ray(hitPosition, L, t, true);
         HitRecord shadowHit = root.intersect(shadowRay);
 
-        if (shadowHit != null) {
+        if (shadowHit.hasIntersection()) {
             float distShadHitViewHit2 = VectorMath.dist2(shadowHit.getPosition(), hitPosition);
             if (shadowHit.getMaterial().castsShadows() && distShadHitViewHit2 < eps) {
                 isShaddowed = true;

@@ -1,20 +1,15 @@
 package materials;
 
-/**
- * Created by simplaY on 05.01.2015.
- */
-
-
-        import base.HitRecord;
+import base.HitRecord;
 import base.Material;
 import base.ShadingSample;
 import base.Spectrum;
-
 import javax.vecmath.Matrix3f;
 import javax.vecmath.Vector3f;
 
 /**
  * A basic diffuse material.
+ * Created by simplaY on 05.01.2015.
  */
 public class DiffuseMaterial implements Material {
 
@@ -38,7 +33,7 @@ public class DiffuseMaterial implements Material {
      * Default diffuse material with reflectance (1,1,1).
      */
     public DiffuseMaterial() {
-        this(new Spectrum(1.f, 1.f, 1.f));
+        this(new Spectrum(1.f));
     }
 
     /**
