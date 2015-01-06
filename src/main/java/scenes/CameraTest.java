@@ -6,7 +6,7 @@ import imageprocessing.BoxfilterFilm;
 import imageprocessing.ClampTonemapper;
 import integrators.PointLightIntegratorFactory;
 import intersectables.IntersectableList;
-import intersectables.Plane;
+import intersectables.geometries.Plane;
 import lightsources.PointLight;
 import samplers.OneSamplerFactory;
 

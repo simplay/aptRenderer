@@ -1,7 +1,8 @@
-package intersectables;
+package intersectables.geometries;
 
 import base.*;
 import constants.HitSentinel;
+import intersectables.PrimitiveGeometry;
 import materials.DiffuseMaterial;
 import util.VectorMath;
 
@@ -9,7 +10,7 @@ import javax.vecmath.Point3f;
 import javax.vecmath.Vector3f;
 
 /**
- * A Infinite Plane is an Intersectable define by its distance to origin and its normal.
+ * A Infinite Plane is an {@link intersectables.PrimitiveGeometry} define by its distance to origin and its normal.
  * The distance is relative along its specified normal vector.
  * Thus the distance to the origin is signed.
  *
@@ -21,7 +22,7 @@ import javax.vecmath.Vector3f;
  *
  * Created by simplaY on 04.01.2015.
  */
-public class Plane implements Intersectable {
+public class Plane extends PrimitiveGeometry {
 
     // plane normal vector
     protected final Vector3f normal;
@@ -29,9 +30,6 @@ public class Plane implements Intersectable {
     // Signed distance from world origin to the plane measured along the normal direction.
     // NB: therefore this distance value is inverse signed to
     protected final float distance;
-
-    // material assigned to plane - default: DiffuseMaterial
-    protected final Material material;
 
 
     /**
@@ -42,10 +40,10 @@ public class Plane implements Intersectable {
      * @param material Material used for shading when intersecting with Intersectable.
      */
     public Plane(Vector3f normal, float distance, Material material) {
+        super(material);
         this.normal = normal;
         this.normal.normalize();
         this.distance = distance;
-        this.material = material;
     }
 
     /**

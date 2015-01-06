@@ -114,4 +114,28 @@ public class VectorMath {
         pointOnRay.scaleAdd(t, origin);
         return pointOnRay;
     }
+
+    /**
+     * Get transformed copy of a Vector.
+     * @param T Homogeneous transformation matrix
+     * @param v vector to transform.
+     * @return transformed copy of given input.
+     */
+    public static Vector3f transformed(Matrix4f T, Vector3f v) {
+        Vector3f copiedV = new Vector3f(v);
+        T.transform(copiedV);
+        return copiedV;
+    }
+
+    /**
+     * Get transformed copy of a Point.
+     * @param T Homogeneous transformation matrix
+     * @param p point to transform.
+     * @return transformed copy of given input.
+     */
+    public static Point3f transformed(Matrix4f T, Point3f p) {
+        Point3f copiedP = new Point3f(p);
+        T.transform(copiedP);
+        return copiedP;
+    }
 }
