@@ -1,5 +1,7 @@
 package base;
 
+import util.VectorMath;
+
 import javax.vecmath.Point3f;
 import javax.vecmath.Vector3f;
 
@@ -67,14 +69,29 @@ public class Ray {
     }
 
     /**
-     *
-     * @param t
-     * @return position on ray at given parameter t.
+     * Get the position on this ray given a certain parameter value t.
+     * NB: Any ray can be defined as a parametrization given the origin and a direction in the following form;
+     * Ray r(t) = origin + t*direction
+     * @param t parameter of ray used to define a certain point on a ray.
+     * @return point on ray of a given parameter value.
      */
     public Point3f pointAt(float t) {
-        Point3f p = new Point3f(direction);
-        p.scaleAdd(t, origin);
-        return p;
+        return VectorMath.pointOnRay(origin, direction, t);
+    }
+
+    /**
+     * Get the normalized opposite direction of this ray's direction.
+     * It is used in order to define the incident direction w_in
+     * used in the rendering equation.
+     * By convention this has the opposite direction of the incident ray.
+     * NB: Calling this method does not the state of this ray.
+     * @return normalized negated direction of this ray.
+     */
+    public Vector3f wIn() {
+        Vector3f dirCopied = new Vector3f(direction);
+        dirCopied.normalize();
+        dirCopied.negate();
+        return dirCopied;
     }
 
     /**

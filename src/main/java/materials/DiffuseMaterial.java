@@ -82,7 +82,6 @@ public class DiffuseMaterial implements Material {
         //map to directional vector
         Matrix3f m = hitRecord.getTBS();
         m.transform(dir);
-        //TODO: why do I need to normalize here?
         dir.normalize();
 
         float p = (float) (dir.dot(hitRecord.getNormal())/Math.PI);

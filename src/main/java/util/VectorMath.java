@@ -1,12 +1,16 @@
 package util;
 
 import javax.vecmath.*;
+import java.util.Random;
 
 /**
  * Utility class for performing some basic vector math calculus.
  * Created by simplaY on 05.01.2015.
  */
 public class VectorMath {
+
+    // Random number generator
+    private static Random rand = new Random();
 
     /**
      * Squared 2-norm distance between two given Tuple3f instances t1,t2.
@@ -86,5 +90,28 @@ public class VectorMath {
     public static float cosTheta(Vector3f normal, Vector3f direction) {
         float cos_norm_dir = normal.dot(direction);
         return cos_norm_dir;
+    }
+
+    /**
+     * Retrieve a random number within the range [0,1]
+     * @return random float within the range [0,1]
+     */
+    public static float randomFloat() {
+        return rand.nextFloat();
+    }
+
+    /**
+     * Get the position on a parametric ray given a certain parameter value t.
+     * Any ray can be defined as a parametrization given the origin and a direction in the following form;
+     * Ray r(t) = origin + t*direction
+     * @param origin a point where ray/line goes through.
+     * @param dir direction vector of ray.
+     * @param t parameter of ray used to define a certain point on a ray.
+     * @return point on ray of a given parameter value.
+     */
+    public static Point3f pointOnRay(Point3f origin, Vector3f dir, float t) {
+        Point3f pointOnRay = new Point3f(dir);
+        pointOnRay.scaleAdd(t, origin);
+        return pointOnRay;
     }
 }
