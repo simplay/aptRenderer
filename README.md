@@ -1,7 +1,7 @@
 #aptRenderer
 
 
-**aptRenderer** is licensed under the [MIT License]((https://github.com/simplay/aptRenderer/blob/master/LICENSE)).
+**aptRenderer** is licensed under the [MIT License](https://github.com/simplay/aptRenderer/blob/master/LICENSE).
 
 ##Usage
 `java aprenderer WIDTH HEIGHT SPP SCENE_TASK`
