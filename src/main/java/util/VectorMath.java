@@ -74,4 +74,17 @@ public class VectorMath {
         reflected.scaleAdd(2f*cosThetaI, normal, negate(wIn));
         return reflected;
     }
+
+    /**
+     * Compute the cosine of the angle between a given normal and direction by using the formula
+     * cos(theta) = <n,v>/(||n||*||v||).
+     * NB: we assume that n and v are normalized vectors.
+     * @param normal normalized normal vector.
+     * @param direction normalized direction vector.
+     * @return cosine of angle between given two vectors.
+     */
+    public static float cosTheta(Vector3f normal, Vector3f direction) {
+        float cos_norm_dir = normal.dot(direction);
+        return cos_norm_dir;
+    }
 }
