@@ -4,6 +4,7 @@ import base.HitRecord;
 import base.Material;
 import base.ShadingSample;
 import base.Spectrum;
+
 import javax.vecmath.Matrix3f;
 import javax.vecmath.Vector3f;
 
@@ -26,7 +27,7 @@ public class DiffuseMaterial implements Material {
     public DiffuseMaterial(Spectrum kd) {
         this.kd = new Spectrum(kd);
         // Normalize
-        this.kd.scale(1f/(float)Math.PI);
+        this.kd.scale(1f / (float) Math.PI);
     }
 
     /**
@@ -39,9 +40,9 @@ public class DiffuseMaterial implements Material {
     /**
      * Returns diffuse BRDF value, that is, a constant.
      *
-     *  @param wOut outgoing direction, by convention towards camera
-     *  @param wIn incident direction, by convention towards light
-     *  @param hitRecord hit record to be used
+     * @param wOut      outgoing direction, by convention towards camera
+     * @param wIn       incident direction, by convention towards light
+     * @param hitRecord hit record to be used
      */
     public Spectrum evaluateBRDF(HitRecord hitRecord, Vector3f wOut, Vector3f wIn) {
         return new Spectrum(kd);
@@ -54,6 +55,7 @@ public class DiffuseMaterial implements Material {
     public ShadingSample evaluateSpecularReflection(HitRecord hitRecord) {
         return null;
     }
+
     public boolean hasSpecularRefraction() {
         return false;
     }
@@ -67,19 +69,19 @@ public class DiffuseMaterial implements Material {
 
         Vector3f dir = new Vector3f();
         float sqr_psi_1 = (float) Math.sqrt(sample[0]);
-        float two_pi_psi_2 = (float) (sample[1]*2*Math.PI);
+        float two_pi_psi_2 = (float) (sample[1] * 2 * Math.PI);
 
-        dir.x = (float) (Math.cos(two_pi_psi_2)*sqr_psi_1);
-        dir.y = (float) (Math.sin(two_pi_psi_2)*sqr_psi_1);
+        dir.x = (float) (Math.cos(two_pi_psi_2) * sqr_psi_1);
+        dir.y = (float) (Math.sin(two_pi_psi_2) * sqr_psi_1);
         dir.z = (float) Math.sqrt(1 - sample[0]);
-        assert(Math.abs(dir.lengthSquared() - 1) < 1e-5f);
+        assert (Math.abs(dir.lengthSquared() - 1) < 1e-5f);
 
         //map to directional vector
         Matrix3f m = hitRecord.getTBS();
         m.transform(dir);
         dir.normalize();
 
-        float p = (float) (dir.dot(hitRecord.getNormal())/Math.PI);
+        float p = (float) (dir.dot(hitRecord.getNormal()) / Math.PI);
         assert p > 0;
         return new ShadingSample(evaluateBRDF(hitRecord, hitRecord.getW(), dir), new Spectrum(), dir, false, p);
 

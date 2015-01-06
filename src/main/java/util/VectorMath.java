@@ -1,6 +1,9 @@
 package util;
 
-import javax.vecmath.*;
+import javax.vecmath.Matrix4f;
+import javax.vecmath.Point3f;
+import javax.vecmath.Tuple3f;
+import javax.vecmath.Vector3f;
 import java.util.Random;
 
 /**
@@ -17,6 +20,7 @@ public class VectorMath {
      * NB: Using squared distances saves us from applying sign checks when comparing
      * two distances (i.e. order of t1, t2 does not matter) and
      * it is way more sensitive for small distance values.
+     *
      * @param t1 first tuple
      * @param t2 second tuple
      * @return squared distance between first and second tuple.
@@ -29,6 +33,7 @@ public class VectorMath {
 
     /**
      * Make a direction from t2 to t1.
+     *
      * @param t1 to tuple
      * @param t2 from tuple
      * @return Vector pointing from second parameter to first parameter.
@@ -42,6 +47,7 @@ public class VectorMath {
     /**
      * Get an the opposite direction of a copy of a given vector.
      * I.e. when given a vector v, then return -copy(v).
+     *
      * @param v direction we are looking for the opposite direction.
      * @return Opposite direction of a given vector.
      */
@@ -53,6 +59,7 @@ public class VectorMath {
 
     /**
      * Get an inverted copy of a given matrix.
+     *
      * @param m Matrix to invert.
      * @return inverted copy of given matrix.
      */
@@ -69,13 +76,13 @@ public class VectorMath {
      * We rely on Snell's Law: r = 2 dot(n, i)*n - i
      *
      * @param normal surface normal at point where incident ray hits the surface.
-     * @param wIn Opposite direction of ray hitting the surface point.
+     * @param wIn    Opposite direction of ray hitting the surface point.
      * @return reflected direction (also pointing away from surface).
      */
     public static Vector3f mirrorReflectionOF(Vector3f normal, Vector3f wIn) {
         float cosThetaI = wIn.dot(normal);
         Vector3f reflected = new Vector3f();
-        reflected.scaleAdd(2f*cosThetaI, normal, negate(wIn));
+        reflected.scaleAdd(2f * cosThetaI, normal, negate(wIn));
         return reflected;
     }
 
@@ -83,7 +90,8 @@ public class VectorMath {
      * Compute the cosine of the angle between a given normal and direction by using the formula
      * cos(theta) = <n,v>/(||n||*||v||).
      * NB: we assume that n and v are normalized vectors.
-     * @param normal normalized normal vector.
+     *
+     * @param normal    normalized normal vector.
      * @param direction normalized direction vector.
      * @return cosine of angle between given two vectors.
      */
@@ -94,6 +102,7 @@ public class VectorMath {
 
     /**
      * Retrieve a random number within the range [0,1]
+     *
      * @return random float within the range [0,1]
      */
     public static float randomFloat() {
@@ -104,9 +113,10 @@ public class VectorMath {
      * Get the position on a parametric ray given a certain parameter value t.
      * Any ray can be defined as a parametrization given the origin and a direction in the following form;
      * Ray r(t) = origin + t*direction
+     *
      * @param origin a point where ray/line goes through.
-     * @param dir direction vector of ray.
-     * @param t parameter of ray used to define a certain point on a ray.
+     * @param dir    direction vector of ray.
+     * @param t      parameter of ray used to define a certain point on a ray.
      * @return point on ray of a given parameter value.
      */
     public static Point3f pointOnRay(Point3f origin, Vector3f dir, float t) {
@@ -117,6 +127,7 @@ public class VectorMath {
 
     /**
      * Get transformed copy of a Vector.
+     *
      * @param T Homogeneous transformation matrix
      * @param v vector to transform.
      * @return transformed copy of given input.
@@ -129,6 +140,7 @@ public class VectorMath {
 
     /**
      * Get transformed copy of a Point.
+     *
      * @param T Homogeneous transformation matrix
      * @param p point to transform.
      * @return transformed copy of given input.

@@ -18,6 +18,7 @@ public class Spectrum {
 
     /**
      * Set spectrum to passed RGB values
+     *
      * @param r red
      * @param g green
      * @param b blue
@@ -30,6 +31,7 @@ public class Spectrum {
 
     /**
      * spectrum is equal passed grayscale value g (g, g, g)
+     *
      * @param grayscale
      */
     public Spectrum(float grayscale) {
@@ -38,6 +40,7 @@ public class Spectrum {
 
     /**
      * use clone other spectrum
+     *
      * @param s spectrum
      */
     public Spectrum(Spectrum s) {
@@ -49,6 +52,7 @@ public class Spectrum {
     /**
      * scale this spectrum's
      * components by t
+     *
      * @param t scalar value
      */
     public void scale(float t) {
@@ -60,6 +64,7 @@ public class Spectrum {
     /**
      * multiply this spectrum
      * by other spectrum component-wise
+     *
      * @param s spectrum to multiply component-wise to this spectrum.
      */
     public void mult(Spectrum s) {
@@ -70,6 +75,7 @@ public class Spectrum {
 
     /**
      * add another spectrum to this spectrum
+     *
      * @param s spectrum to add to this spectrum.
      */
     public void add(Spectrum s) {
@@ -80,6 +86,7 @@ public class Spectrum {
 
     /**
      * Shift this spectrum by a given scalar value (bias).
+     *
      * @param t scalar used to shift this spectrum
      */
     public void shift(float t) {
@@ -90,6 +97,7 @@ public class Spectrum {
 
     /**
      * subtract spectrum s from this spectrum
+     *
      * @param s spectrum to subtract from this spectrum.
      */
     public void sub(Spectrum s) {
@@ -101,6 +109,7 @@ public class Spectrum {
     /**
      * divide this spectrum component-wise
      * by other spectrum s.
+     *
      * @param s spectrum to divide by
      */
     public void divide(Spectrum s) {
@@ -111,6 +120,7 @@ public class Spectrum {
 
     /**
      * get a new squared instance of this spectrum.
+     *
      * @return spectrum t = s^2
      */
     public Spectrum squared() {
@@ -128,6 +138,7 @@ public class Spectrum {
 
     /**
      * Components of this spectrum are bounded by given range.
+     *
      * @param min lower tolerated spectrum bound
      * @param max upper tolerated spectrum bound
      */
@@ -141,21 +152,23 @@ public class Spectrum {
      * return Luminance of spectrum by returning
      * Y component of spectrum in YUV color coordinate system
      * Y = 0,299*R + 0,587*G + 0,114*B.
+     *
      * @return Luminance of spectrum.
      */
     public float luminance() {
-        return 0.299f*r + 0.587f*g + 0.114f*b;
+        return 0.299f * r + 0.587f * g + 0.114f * b;
     }
 
     /**
      * Get normalized and clamped RGB value represented as int
      * We assume that each color channel is encoded as 8bit number
+     *
      * @return 24 rgb color representation
      */
     public int normalizedClamped24BitRGB() {
         Spectrum s = new Spectrum(this);
-        s.clamp(0,1);
-        return ((int)(255.f*s.r) << 16) | ((int)(255.f*s.g) << 8) | ((int)(255.f*s.b) << 0);
+        s.clamp(0, 1);
+        return ((int) (255.f * s.r) << 16) | ((int) (255.f * s.g) << 8) | ((int) (255.f * s.b) << 0);
 
     }
 }

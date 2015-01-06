@@ -15,10 +15,11 @@ public class Timer {
 
     /**
      * Get Elapsed time in milliseconds since last timer reset.
+     *
      * @return elapsed time in milliseconds.
      */
     public long timeElapsed() {
-        return this.now()-start;
+        return this.now() - start;
     }
 
     /**
@@ -30,6 +31,7 @@ public class Timer {
 
     /**
      * Get current system time in milliseconds.
+     *
      * @return current system time in milliseconds.
      */
     protected long now() {

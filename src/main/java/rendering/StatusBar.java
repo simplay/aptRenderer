@@ -23,11 +23,12 @@ public class StatusBar {
 
     /**
      * Constructor of status bar.
+     *
      * @param totalTaskCount total number of rendering tasks.
      */
     public StatusBar(int totalTaskCount) {
         this.totalTaskCount = totalTaskCount;
-        this.stepSize = (int)Math.ceil(totalTaskCount/TOKEN_COUNT);
+        this.stepSize = (int) Math.ceil(totalTaskCount / TOKEN_COUNT);
     }
 
     /**

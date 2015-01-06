@@ -1,6 +1,9 @@
 package intersectables.geometries;
 
-import base.*;
+import base.HitRecord;
+import base.Material;
+import base.Ray;
+import base.Spectrum;
 import constants.HitSentinel;
 import intersectables.PrimitiveGeometry;
 import materials.DiffuseMaterial;
@@ -13,13 +16,13 @@ import javax.vecmath.Vector3f;
  * A Infinite Plane is an {@link intersectables.PrimitiveGeometry} define by its distance to origin and its normal.
  * The distance is relative along its specified normal vector.
  * Thus the distance to the origin is signed.
- *
+ * <p/>
  * Note that it is enough to use a distance value and a normal vector
  * to define an infinite plane by relying on the following idea:
  * The given distance is the distance to the origin within the world space
  * when following a line that goes through that world origin
  * having the same direction as the provided normal vector
- *
+ * <p/>
  * Created by simplaY on 04.01.2015.
  */
 public class Plane extends PrimitiveGeometry {

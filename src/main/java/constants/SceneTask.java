@@ -4,16 +4,17 @@ import base.Scene;
 import scenes.CameraTest;
 import scenes.DummyTest;
 
-import java.util.*;
 import java.lang.reflect.Constructor;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Each SceneTask value is mapped to a particular Scene used for rendering.
  * Created by simplaY on 04.01.2015.
  */
 public enum SceneTask {
-    DUMMY_TEST (DummyTest.class),
-    CAMERA_TEST (CameraTest.class);
+    DUMMY_TEST(DummyTest.class),
+    CAMERA_TEST(CameraTest.class);
 
     // Associates an unique integer key to each SceneTask enum value.
     private static Map<Integer, SceneTask> map = new HashMap<Integer, SceneTask>();
@@ -37,6 +38,7 @@ public enum SceneTask {
     /**
      * Each SceneTask has a unique integer key and
      * a certain {@lin base.Scene} instance assigned to.
+     *
      * @param base
      */
     private SceneTask(Class base) {
@@ -46,6 +48,7 @@ public enum SceneTask {
 
     /**
      * Provided unique integers for this enum
+     *
      * @return a unique integer within this enum.
      */
     private static int nextCounter() {
@@ -55,6 +58,7 @@ public enum SceneTask {
     /**
      * retrieve a particular enum by an integer key.
      * assigns null if there is no SceneTask enum mapped to this key.
+     *
      * @param taskId SceneTask integer key of interest.
      * @return an Scene task associated to a given integer key.
      */
@@ -64,9 +68,10 @@ public enum SceneTask {
 
     /**
      * Initialized a user-specified Scene by relying on reflection.
-     * @param width scene height.
+     *
+     * @param width  scene height.
      * @param height scene width.
-     * @param spp samples per pixel.
+     * @param spp    samples per pixel.
      * @return user specified scene object.
      */
     public Scene initialize(int width, int height, int spp) {

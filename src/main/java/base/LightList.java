@@ -12,6 +12,7 @@ public class LightList extends ArrayList<LightGeometry> {
 
     /**
      * Get a random light source stored within this list.
+     *
      * @return get one random light source.
      */
     public LightGeometry getRandomLightSource() {

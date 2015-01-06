@@ -13,7 +13,7 @@ import javax.vecmath.Vector3f;
 /**
  * Allows to render multiple copies of an intersectable without having to make copies of the intersectable.
  * This can be achieved by applying different transformations to the same intersectable.
- *
+ * <p/>
  * Created by simplaY on 06.01.2015.
  */
 public class Instance implements Intersectable {
@@ -32,8 +32,9 @@ public class Instance implements Intersectable {
 
     /**
      * Create an Instance of a given intersectable using a certain transformation.
+     *
      * @param baseGeometry intersectable we want to instance.
-     * @param T homogeneous transformation matrix applied to intersectable.
+     * @param T            homogeneous transformation matrix applied to intersectable.
      */
     public Instance(PrimitiveGeometry baseGeometry, Matrix4f T) {
         this.baseGeometry = baseGeometry;
@@ -55,7 +56,7 @@ public class Instance implements Intersectable {
         Ray instanceRay = new Ray(transformedInstanceOrigin, transformedInstanceDir, ray.getT());
         HitRecord instanceRayHit = baseGeometry.intersect(instanceRay);
 
-        if(instanceRayHit.hasIntersection()) {
+        if (instanceRayHit.hasIntersection()) {
             return transformBack(instanceRayHit);
         } else {
             return HitSentinel.getInstance();
@@ -64,6 +65,7 @@ public class Instance implements Intersectable {
 
     /**
      * Transforms HitRecord Data for transformed tay back to original coordinate system.
+     *
      * @param hit Hit record of ray transformed to same coordinate system as Instance has.
      * @return re-transformed Hit record data.
      */

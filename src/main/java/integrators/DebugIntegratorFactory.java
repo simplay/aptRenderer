@@ -15,5 +15,6 @@ public class DebugIntegratorFactory implements IntegratorFactory {
     }
 
     @Override
-    public void prepareScene(Scene scene) {}
+    public void prepareScene(Scene scene) {
+    }
 }

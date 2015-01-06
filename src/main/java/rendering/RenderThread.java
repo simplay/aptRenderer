@@ -22,13 +22,13 @@ public class RenderThread implements Runnable {
 
     @Override
     public void run() {
-        while(true) {
+        while (true) {
             RenderTask task = queue.acquireTask();
             if (task == null) break;
 
             for (int j = task.getBottom(); j < task.getTop(); j++) {
                 for (int i = task.getLeft(); i < task.getRight(); i++) {
-                    task.evaluateSampleAt(i,j);
+                    task.evaluateSampleAt(i, j);
                 }
             }
             statusBar.update();

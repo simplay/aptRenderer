@@ -17,6 +17,7 @@ public class TaskQueue {
 
     /**
      * Add a RenderTask to this queue.
+     *
      * @param task supposed to be not null.
      */
     public synchronized void add(RenderTask task) {
@@ -25,6 +26,7 @@ public class TaskQueue {
 
     /**
      * Number of RenderTask instances stored in this queue.
+     *
      * @return size of this Queue.
      */
     public synchronized int size() {
@@ -33,6 +35,7 @@ public class TaskQueue {
 
     /**
      * Retrieves and removes head from queue.
+     *
      * @return
      */
     public synchronized RenderTask acquireTask() {

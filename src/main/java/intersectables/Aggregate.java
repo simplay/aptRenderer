@@ -20,7 +20,7 @@ public abstract class Aggregate implements Intersectable {
         float closestLineParam = Float.MAX_VALUE;
 
         Iterator<Intersectable> iterator = iterator();
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             Intersectable sceneObject = iterator.next();
             HitRecord hit = sceneObject.intersect(ray);
 
@@ -28,8 +28,8 @@ public abstract class Aggregate implements Intersectable {
 
                 // relax values: Update closest hit-record if a closer has found in aggregated list.
                 if (hit.getT() < closestLineParam && hit.getT() > 0f) {
-                        closestLineParam = hit.getT();
-                        closestHitRecord = hit;
+                    closestLineParam = hit.getT();
+                    closestHitRecord = hit;
                 }
             }
         }
@@ -38,6 +38,7 @@ public abstract class Aggregate implements Intersectable {
 
     /**
      * Iterator over all intersectable objects aggregated in this object
+     *
      * @return Iterator of Intersectable instances
      */
     public abstract Iterator<Intersectable> iterator();

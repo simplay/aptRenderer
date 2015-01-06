@@ -26,17 +26,17 @@ public class DebugIntegrator implements Integrator {
         if (hitRecord.hasIntersection()) {
 
             // hit point in front of ray origin
-            if(hitRecord.getT() > 0.f) {
-                return new Spectrum(0.f,1.f,0.f);
+            if (hitRecord.getT() > 0.f) {
+                return new Spectrum(0.f, 1.f, 0.f);
 
-            // hit point behind the ray's origin
+                // hit point behind the ray's origin
             } else {
-                return new Spectrum(1.f,0.f,0.f);
+                return new Spectrum(1.f, 0.f, 0.f);
             }
 
-        // there was no hit
+            // there was no hit
         } else {
-            return new Spectrum(0.f,0.f,0.f);
+            return new Spectrum(0.f, 0.f, 0.f);
         }
     }
 
@@ -45,7 +45,7 @@ public class DebugIntegrator implements Integrator {
      * pixel area itself, the samples are 2D.
      *
      * @param sampler the sampler to be used for generating the samples
-     * @param n the desired number of samples
+     * @param n       the desired number of samples
      */
     @Override
     public float[][] makePixelSamples(Sampler sampler, int n) {

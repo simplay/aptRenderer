@@ -15,7 +15,7 @@ import javax.vecmath.Vector3f;
 /**
  * Created by simplaY on 04.01.2015.
  */
-public class CameraTest extends Scene{
+public class CameraTest extends Scene {
     public CameraTest(int width, int height, int spp) {
         super(width, height, spp);
         this.filePathName = "camera_test_scene";
@@ -23,7 +23,7 @@ public class CameraTest extends Scene{
         this.tonemapper = new ClampTonemapper();
         this.integratorFactory = new PointLightIntegratorFactory();
         this.samplerFactory = new OneSamplerFactory();
-        
+
         LightGeometry pointLight = new PointLight(new Vector3f(0.f, 0.f, 3.f),
                 new Spectrum(10.f, 10.f, 10.f));
         lightList = new LightList();

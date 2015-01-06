@@ -61,16 +61,17 @@ public class Renderer {
     /**
      * Task partitioning for rendering process. The image is rendered block-wise.
      * Each rendering task is a square block within the image of size taskSize.
+     *
      * @return A list of rendering tasks
      */
     private TaskQueue prepareTasks() {
         TaskQueue tasks = new TaskQueue();
-        for (int j = 0; j < (int)Math.ceil((double)height / (double)taskSize); j++) {
-            for (int i = 0; i < (int)Math.ceil((double)width / (double) taskSize); i++) {
-                int left = i*taskSize;
-                int right = Math.min((i+1)*taskSize, width);
-                int bottom = j*taskSize;
-                int top = Math.min((j+1)*taskSize, height);
+        for (int j = 0; j < (int) Math.ceil((double) height / (double) taskSize); j++) {
+            for (int i = 0; i < (int) Math.ceil((double) width / (double) taskSize); i++) {
+                int left = i * taskSize;
+                int right = Math.min((i + 1) * taskSize, width);
+                int bottom = j * taskSize;
+                int top = Math.min((j + 1) * taskSize, height);
 
                 tasks.add(new RenderTask(scene, left, right, bottom, top));
             }
@@ -104,7 +105,7 @@ public class Renderer {
 
         BufferedImage frame = scene.getTonemapper().process(scene.getFilm());
         try {
-            ImageIO.write(frame, "png", new File(scene.getFilePathName()+".png"));
+            ImageIO.write(frame, "png", new File(scene.getFilePathName() + ".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

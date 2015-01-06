@@ -1,7 +1,6 @@
 package cameras;
 
 
-
 import base.Camera;
 import base.Ray;
 
@@ -22,7 +21,7 @@ public class PinholeCamera implements Camera {
     private float aspect;
     private int width;
     private int height;
-    private float t,b,l,r;
+    private float t, b, l, r;
 
     @Override
     public String toString() {
@@ -30,13 +29,12 @@ public class PinholeCamera implements Camera {
     }
 
     /**
-     *
-     * @param eye from position of camera
+     * @param eye    from position of camera
      * @param lookAt to position of camera
-     * @param up height
-     * @param fov field of view angle [degree]
+     * @param up     height
+     * @param fov    field of view angle [degree]
      * @param aspect aspect retio w/h
-     * @param width image width
+     * @param width  image width
      * @param height image height
      */
     public PinholeCamera(Vector3f eye, Vector3f lookAt, Vector3f up, float fov,
@@ -52,17 +50,17 @@ public class PinholeCamera implements Camera {
 
         computeCameraMatrix();
         computeImageCorners();
-        System.out.println(this.t + " " + this.b + " " + this.l + " " + this.r );
+        System.out.println(this.t + " " + this.b + " " + this.l + " " + this.r);
     }
 
     /**
      * Compute image corner
      */
-    private void computeImageCorners(){
+    private void computeImageCorners() {
         double angularFov = Math.PI * (fov / 180);
-        this.t = (float) Math.tan(angularFov/2d);
+        this.t = (float) Math.tan(angularFov / 2d);
         this.b = -t;
-        this.r = aspect*t;
+        this.r = aspect * t;
         this.l = -r;
     }
 
@@ -104,8 +102,8 @@ public class PinholeCamera implements Camera {
     @Override
     public Ray makeWorldSpaceRay(int i, int j, float[] sample) {
         // System.out.println("(i,j)=("+i + "," + j+ ")");
-        float u_ij = l + (r-l)*(i+sample[0])/width;
-        float v_ij = b + (t-b)*(j+sample[1])/height;
+        float u_ij = l + (r - l) * (i + sample[0]) / width;
+        float v_ij = b + (t - b) * (j + sample[1]) / height;
         float w_ij = -1f;
 
         Vector4f s_uvw_minusZeros = new Vector4f(u_ij, v_ij, w_ij, 0f);

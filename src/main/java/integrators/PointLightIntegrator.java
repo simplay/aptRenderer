@@ -18,6 +18,7 @@ public class PointLightIntegrator implements Integrator {
 
     /**
      * Integrate a given scene.
+     *
      * @param scene Scene we want to apply our integrator.
      */
     public PointLightIntegrator(Scene scene) {
@@ -30,6 +31,7 @@ public class PointLightIntegrator implements Integrator {
      * their BRDF contributions. Performs shading.
      * No reflection, refraction effects modeled
      * No area light sources
+     *
      * @param cameraRay primary camera ray
      * @return total contribution of this primary ray
      */
@@ -55,9 +57,10 @@ public class PointLightIntegrator implements Integrator {
 
     /**
      * Check whether hitPosition receives light
+     *
      * @param hitPosition viewer ray hit (closest)
-     * @param L light direction vector
-     * @param t parameter of ray equation p_uvw(t) = 0 + t(s_uvw-0)
+     * @param L           light direction vector
+     * @param t           parameter of ray equation p_uvw(t) = 0 + t(s_uvw-0)
      * @return is light source occluded by object at hitPostion?
      */
     private boolean isOccluded(Point3f hitPosition, Vector3f L, float t, float eps) {
@@ -76,9 +79,10 @@ public class PointLightIntegrator implements Integrator {
 
     /**
      * Compute BRDF contribution for a given source at closest intersection point.
+     *
      * @param lightSource current point light source.
-     * @param hitRecord closest intersection primary ray with scene.
-     * @param t parameter of ray equation p_uvw(t) = 0 + t(s_uvw-0).
+     * @param hitRecord   closest intersection primary ray with scene.
+     * @param t           parameter of ray equation p_uvw(t) = 0 + t(s_uvw-0).
      * @return returns current spectrum of light source at intersaction point.
      */
     private Spectrum getContributionOf(LightGeometry lightSource, HitRecord hitRecord, float t) {
@@ -109,7 +113,7 @@ public class PointLightIntegrator implements Integrator {
         contribution.scale(cos_theta);
 
         // Geometry term(for point lights): multiply with 1/(squared distance)
-        contribution.scale(1.f/d2);
+        contribution.scale(1.f / d2);
         return contribution;
     }
 }

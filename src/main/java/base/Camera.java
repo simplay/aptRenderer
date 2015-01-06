@@ -13,8 +13,8 @@ public interface Camera {
      * sample dimensions are used to sample a location in the current
      * pixel. The samples are assumed to be in the range [0,1].
      *
-     * @param i pixel column index
-     * @param j pixel row index
+     * @param i      pixel column index
+     * @param j      pixel row index
      * @param sample random sample that the camera can use to generate a ray
      * @return the ray in world coordinates
      */

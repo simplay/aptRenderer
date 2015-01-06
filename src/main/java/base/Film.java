@@ -20,18 +20,21 @@ public interface Film {
 
     /**
      * Returns the image stored in the film.
+     *
      * @return the image
      */
     public Spectrum[][] getImage();
 
     /**
      * Returns width (in pixels) of film.
+     *
      * @return width in pixels
      */
     public int getWidth();
 
     /**
      * Returns height (in pixels) of film.
+     *
      * @return height in pixels
      */
     public int getHeight();

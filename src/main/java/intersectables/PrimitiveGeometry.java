@@ -17,6 +17,7 @@ public abstract class PrimitiveGeometry implements Intersectable {
 
     /**
      * Material that should be set to Geometry.
+     *
      * @param material
      */
     public PrimitiveGeometry(Material material) {

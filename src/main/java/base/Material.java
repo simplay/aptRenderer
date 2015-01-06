@@ -1,6 +1,6 @@
 package base;
 
-import javax.vecmath.*;
+import javax.vecmath.Vector3f;
 
 /**
  * Materials implement functionality for shading surfaces using their BRDFs. Light sources
@@ -15,8 +15,8 @@ public interface Material {
      * direction by sampling a point on a light source.
      *
      * @param hitRecord Information about hit point
-     * @param wOut Outgoing direction, normalized and pointing away from the surface
-     * @param wIn Incoming direction, normalized and pointing away from the surface
+     * @param wOut      Outgoing direction, normalized and pointing away from the surface
+     * @param wIn       Incoming direction, normalized and pointing away from the surface
      * @return BRDF value
      */
     public Spectrum evaluateBRDF(HitRecord hitRecord, Vector3f wOut, Vector3f wIn);
@@ -27,7 +27,7 @@ public interface Material {
      * the emission by sampling a point on a light source.
      *
      * @param hitRecord Information about hit point on light source
-     * @param wOut Outgoing direction, normalized and pointing away from the surface
+     * @param wOut      Outgoing direction, normalized and pointing away from the surface
      * @return emission value
      */
     public Spectrum evaluateEmission(HitRecord hitRecord, Vector3f wOut);

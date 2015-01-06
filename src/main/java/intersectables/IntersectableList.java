@@ -10,7 +10,7 @@ import java.util.LinkedList;
  * Usually, a scene consists of many different intersectable instances.
  * Created by simplaY on 05.01.2015.
  */
-public class IntersectableList extends Aggregate{
+public class IntersectableList extends Aggregate {
 
     // Data-Structure containing all intersectable instances in this list.
     private LinkedList<Intersectable> container;
@@ -21,6 +21,7 @@ public class IntersectableList extends Aggregate{
 
     /**
      * Add an intersectable instance to the list
+     *
      * @param intersectable intersectable to insert.
      */
     public void add(Intersectable intersectable) {

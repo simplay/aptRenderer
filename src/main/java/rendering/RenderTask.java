@@ -26,7 +26,8 @@ public class RenderTask {
         // compete for access to a shared sampler/integrator, and thread contention
         // can be reduced.
         this.integrator = scene.getIntegratorFactory().make(scene);
-        this.sampler = scene.getSamplerFactory().make();;
+        this.sampler = scene.getSamplerFactory().make();
+        ;
     }
 
     public int getLeft() {
@@ -66,7 +67,7 @@ public class RenderTask {
             Spectrum s = integrator.integrate(primaryRay);
 
             // Write to film
-            scene.getFilm().addSample((double)i+(double)samples[k][0], (double)j+(double)samples[k][1], s);
+            scene.getFilm().addSample((double) i + (double) samples[k][0], (double) j + (double) samples[k][1], s);
         }
     }
 

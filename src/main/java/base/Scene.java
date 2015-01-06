@@ -44,9 +44,10 @@ public abstract class Scene {
 
     /**
      * Every scene has to have specified a width, height and spp.
-     * @param width image width.
+     *
+     * @param width  image width.
      * @param height image height.
-     * @param spp samples per pixels.
+     * @param spp    samples per pixels.
      */
     public Scene(int width, int height, int spp) {
         this.width = width;
@@ -61,7 +62,7 @@ public abstract class Scene {
     protected abstract Intersectable initializeGeometries();
 
     public String getFilePathName() {
-        return basePath+filePathName;
+        return basePath + filePathName;
     }
 
     public int getSpp() {

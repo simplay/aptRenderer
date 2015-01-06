@@ -3,8 +3,7 @@ package constants;
 import base.HitRecord;
 
 /**
-
-/**
+ * /**
  * HitRecord Singleton object
  * Used to represent a no intersection object in order to avoid null checks.
  * Created by simplaY on 05.01.2015.

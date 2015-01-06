@@ -1,6 +1,8 @@
 package base;
 
-import javax.vecmath.*;
+import javax.vecmath.Matrix3f;
+import javax.vecmath.Point3f;
+import javax.vecmath.Vector3f;
 
 /**
  * Stores information about a ray-surface intersection. This information
@@ -69,15 +71,16 @@ public class HitRecord {
 
     /**
      * Constructor Hit record.
-     * @param t parameter of the ray at the hit point.
-     * @param position hit point at surface.
-     * @param normal normal at hit point.
-     * @param w incident ray direction pointing away from surface.
+     *
+     * @param t             parameter of the ray at the hit point.
+     * @param position      hit point at surface.
+     * @param normal        normal at hit point.
+     * @param w             incident ray direction pointing away from surface.
      * @param intersectable intersectable object that was hit.
-     * @param material material at hit position.
-     * @param u first texture coordinate at hit point.
-     * @param v second texture coordinate at hit point.
-     * @param tangent tangent vector at hit point.
+     * @param material      material at hit position.
+     * @param u             first texture coordinate at hit point.
+     * @param v             second texture coordinate at hit point.
+     * @param tangent       tangent vector at hit point.
      */
     public HitRecord(float t, Point3f position, Vector3f normal, Vector3f w,
                      Intersectable intersectable, Material material, float u, float v, Vector3f tangent) {
@@ -100,14 +103,15 @@ public class HitRecord {
 
     /**
      * Constructor Hit record.
-     * @param t parameter of the ray at the hit point
-     * @param position hit point at surface
-     * @param normal normal at hit point
-     * @param w incident ray direction pointing away from surface.
+     *
+     * @param t             parameter of the ray at the hit point
+     * @param position      hit point at surface
+     * @param normal        normal at hit point
+     * @param w             incident ray direction pointing away from surface.
      * @param intersectable intersectable object that was hit.
-     * @param material material at hit position
-     * @param u first texture coordinate at hit point
-     * @param v second texture coordinate at hit point
+     * @param material      material at hit position
+     * @param u             first texture coordinate at hit point
+     * @param v             second texture coordinate at hit point
      */
     public HitRecord(float t, Point3f position, Vector3f normal, Vector3f w, Intersectable intersectable, Material material, float u, float v) {
         this(t, position, normal, w, intersectable, material, u, v, estimatedTangent());
@@ -115,8 +119,9 @@ public class HitRecord {
 
     /**
      * Constructor Hit record for Sampling Light Sources.
-     * @param position hit point at surface
-     * @param material material at hit position
+     *
+     * @param position   hit point at surface
+     * @param material   material at hit position
      * @param probablity
      */
     public HitRecord(Point3f position, Material material, float probablity) {
@@ -133,6 +138,7 @@ public class HitRecord {
 
     /**
      * Was there an intersection?
+     *
      * @return a boolean indicating whether there was an intersection
      */
     public boolean hasIntersection() {
@@ -141,6 +147,7 @@ public class HitRecord {
 
     /**
      * If there was no tangent specified in the constructor, estimate one.
+     *
      * @return returns a normalized vector pointing to towards positive x-axis.
      */
     private static Vector3f estimatedTangent() {

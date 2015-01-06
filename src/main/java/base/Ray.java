@@ -35,9 +35,10 @@ public class Ray {
      * In order to evaluate a particular position on this ray
      * (this position is supposed to depict a intersection with another object)
      * we have to provide an intersection parameter t.
-     * @param origin position where ray start world space
+     *
+     * @param origin    position where ray start world space
      * @param direction direction where rays is pointing at
-     * @param t intersection paramter.
+     * @param t         intersection paramter.
      */
     public Ray(Point3f origin, Vector3f direction, float t) {
         this(origin, direction, t, false);
@@ -50,9 +51,10 @@ public class Ray {
      * we have to provide an intersection parameter t.
      * In addition, we can pass a boolean determining whether
      * we want to slightly perturbate the origin of the ray
-     * @param origin position where ray start world space
-     * @param direction direction where rays is pointing at
-     * @param t intersection parameter.
+     *
+     * @param origin        position where ray start world space
+     * @param direction     direction where rays is pointing at
+     * @param t             intersection parameter.
      * @param isPerturbated should we slightly perturbate the origin.
      */
     public Ray(Point3f origin, Vector3f direction, float t, boolean isPerturbated) {
@@ -72,6 +74,7 @@ public class Ray {
      * Get the position on this ray given a certain parameter value t.
      * NB: Any ray can be defined as a parametrization given the origin and a direction in the following form;
      * Ray r(t) = origin + t*direction
+     *
      * @param t parameter of ray used to define a certain point on a ray.
      * @return point on ray of a given parameter value.
      */
@@ -85,6 +88,7 @@ public class Ray {
      * used in the rendering equation.
      * By convention this has the opposite direction of the incident ray.
      * NB: Calling this method does not the state of this ray.
+     *
      * @return normalized negated direction of this ray.
      */
     public Vector3f wIn() {
@@ -97,6 +101,7 @@ public class Ray {
     /**
      * Set bounce count of this ray equal to
      * the bounce count of another ray incremented by one.
+     *
      * @param ray other ray used as base bounce count.
      */
     public void setNextBounceCount(Ray ray) {
@@ -105,6 +110,7 @@ public class Ray {
 
     /**
      * Get bounce count of this ray
+     *
      * @return bounce count of this ray
      */
     public int getBounceCount() {
