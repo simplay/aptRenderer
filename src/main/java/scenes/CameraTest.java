@@ -23,11 +23,6 @@ public class CameraTest extends Scene {
         this.tonemapper = new ClampTonemapper();
         this.integratorFactory = new PointLightIntegratorFactory();
         this.samplerFactory = new OneSamplerFactory();
-
-        LightGeometry pointLight = new PointLight(new Vector3f(0.f, 0.f, 3.f),
-                new Spectrum(10.f, 10.f, 10.f));
-        lightList = new LightList();
-        lightList.add(pointLight);
     }
 
     @Override
@@ -49,5 +44,14 @@ public class CameraTest extends Scene {
         intersectableList.add(new Plane(new Vector3f(0.f, -1.f, 0.f), 1.f));
         intersectableList.add(new Plane(new Vector3f(0.f, 0.f, 1.f), 1.f));
         return intersectableList;
+    }
+
+    @Override
+    protected LightList initializeLights() {
+        LightGeometry pointLight = new PointLight(new Vector3f(0.f, 0.f, 3.f),
+                new Spectrum(10.f, 10.f, 10.f));
+        LightList lightList = new LightList();
+        lightList.add(pointLight);
+        return lightList;
     }
 }

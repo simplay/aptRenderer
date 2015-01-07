@@ -2,6 +2,7 @@ package scenes;
 
 import base.Camera;
 import base.Intersectable;
+import base.LightList;
 import base.Scene;
 
 /**
@@ -21,6 +22,11 @@ public class DummyTest extends Scene {
 
     @Override
     protected Intersectable initializeGeometries() {
+        return null;
+    }
+
+    @Override
+    protected LightList initializeLights() {
         return null;
     }
 }

@@ -22,7 +22,7 @@ public abstract class Scene {
     protected int height;
 
     // Represents the eye of a viewer.
-    protected Camera camera;
+    private Camera camera;
 
     // Some kind filter applied to rendered image.
     protected Film film;
@@ -37,10 +37,10 @@ public abstract class Scene {
     protected Tonemapper tonemapper;
 
     // Top level scene object encapsulating hierarchically all scene objects.
-    protected Intersectable root;
+    private Intersectable root;
 
     // Scene light list storing all light geometries.
-    protected LightList lightList;
+    private LightList lightList;
 
     /**
      * Every scene has to have specified a width, height and spp.
@@ -55,11 +55,15 @@ public abstract class Scene {
         this.spp = spp;
         camera = this.initializeCamera();
         root = this.initializeGeometries();
+        lightList = this.initializeLights();
     }
 
     protected abstract Camera initializeCamera();
 
     protected abstract Intersectable initializeGeometries();
+
+    protected abstract LightList initializeLights();
+
 
     public String getFilePathName() {
         return basePath + filePathName;
