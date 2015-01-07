@@ -1,6 +1,7 @@
 package constants;
 
 import base.Scene;
+import scenes.BlinnTest;
 import scenes.CameraTest;
 import scenes.DummyTest;
 
@@ -14,7 +15,8 @@ import java.util.Map;
  */
 public enum SceneTask {
     DUMMY_TEST(DummyTest.class),
-    CAMERA_TEST(CameraTest.class);
+    CAMERA_TEST(CameraTest.class),
+    BLINN_TEST(BlinnTest.class);
 
     // Associates an unique integer key to each SceneTask enum value.
     private static Map<Integer, SceneTask> map = new HashMap<Integer, SceneTask>();

@@ -21,7 +21,7 @@ public class BaseMath {
         float x2 = (float) ((-b - Math.sqrt(discriminant)) / (2f * a));
 
         if (x1 > 0f && x2 > 0f) {
-            return new Float (Math.max(x1, x2));
+            return new Float (Math.min(x1, x2));
         } else if (x1 > 0f) {
             return new Float(x1);
         } else if (x2 > 0f) {

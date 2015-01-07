@@ -57,7 +57,6 @@ public class Sphere extends PrimitiveGeometry {
 
     private HitRecord makeHitRecord(float zero, Ray ray) {
         Point3f position = ray.pointAt(zero);
-        position.scale(-1f);
         Vector3f normal = VectorMath.sub(position, center);
 
         // scale by radius

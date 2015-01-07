@@ -35,12 +35,22 @@ public class ShadingSample {
      */
     private float p;
 
+    private boolean isSampleable = true;
+
     public ShadingSample(Spectrum brdf, Spectrum emission, Vector3f w, boolean isSpecular, float p) {
         this.brdf = new Spectrum(brdf);
         this.emission = new Spectrum(emission);
         this.w = new Vector3f(w);
         this.isSpecular = isSpecular;
         this.p = p;
+    }
+
+    protected ShadingSample() {
+        this.isSampleable = false;
+    }
+
+    public boolean isSampleable() {
+        return isSampleable;
     }
 
     public Spectrum getBrdf() {
