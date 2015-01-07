@@ -21,6 +21,7 @@ The number in the fist column indicates the SCENE_TASK used for rendering the sc
 | ------------- |:-------------:| 
 | 0      | DummyTest |
 | 1      | CameraTest      |
+| 2      | BlinnTest      |
 
 ##Contributing
 1. Fork this repository
