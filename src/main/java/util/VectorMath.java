@@ -1,9 +1,6 @@
 package util;
 
-import javax.vecmath.Matrix4f;
-import javax.vecmath.Point3f;
-import javax.vecmath.Tuple3f;
-import javax.vecmath.Vector3f;
+import javax.vecmath.*;
 import java.util.Random;
 
 /**
@@ -32,16 +29,16 @@ public class VectorMath {
     }
 
     /**
-     * Make a direction from t2 to t1.
-     *
-     * @param t1 to tuple
-     * @param t2 from tuple
+     * Make a direction from a fromPos location to a toPos location subtract toPos from fromPos;
+     * @param toPos to location
+     * @param fromPos from location
      * @return Vector pointing from second parameter to first parameter.
      */
-    public static Vector3f sub(Tuple3f t1, Tuple3f t2) {
-        Vector3f dir_from_t2_to_t1 = new Vector3f(t1);
-        dir_from_t2_to_t1.sub(t2);
-        return dir_from_t2_to_t1;
+    public static Vector3f sub(Tuple3f toPos, Tuple3f fromPos) {
+        Vector3f dir = new Vector3f();
+        dir.sub(toPos, fromPos);
+        return dir;
+
     }
 
     /**
@@ -150,4 +147,5 @@ public class VectorMath {
         T.transform(copiedP);
         return copiedP;
     }
+
 }
