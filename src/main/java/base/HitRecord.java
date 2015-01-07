@@ -228,4 +228,8 @@ public class HitRecord {
         this.probablity = probablity;
     }
 
+    public void setIntersectable(Intersectable intersectable) {
+        this.intersectable = intersectable;
+    }
+
 }
