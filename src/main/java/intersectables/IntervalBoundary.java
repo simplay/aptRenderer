@@ -3,6 +3,7 @@ package intersectables;
 import base.HitRecord;
 import constants.BelongsTo;
 import constants.BoundaryType;
+import constants.HitSentinel;
 
 /**
  * Created by simplaY on 07.01.2015.
@@ -13,13 +14,13 @@ public class IntervalBoundary implements Comparable<IntervalBoundary> {
     private final float t;
 
     // The type of intersection boundary. Is either START or END.
-    private final BoundaryType type;
+    private BoundaryType type;
 
     // Hit record of intersection stored in this IntervalBoundary.
     private final HitRecord hitRecord;
 
     // denotes the type of node in an hierarchical (binary tree) structure. Is either LEFT or RIGHT.
-    private final BelongsTo belongsTo;
+    private BelongsTo belongsTo;
 
     /**
      * Creates an interval boundary.
@@ -44,6 +45,13 @@ public class IntervalBoundary implements Comparable<IntervalBoundary> {
      */
     public IntervalBoundary(float t, BoundaryType type, HitRecord hitRecord) {
         this(t, type, hitRecord, BelongsTo.NOT_SET);
+    }
+
+    /**
+     * Empty Interal
+     */
+    public IntervalBoundary() {
+        this(0, null, HitSentinel.getInstance());
     }
 
     /**
@@ -81,5 +89,13 @@ public class IntervalBoundary implements Comparable<IntervalBoundary> {
 
     public BelongsTo getBelongsTo() {
         return belongsTo;
+    }
+
+    public void setBelongsTo(BelongsTo belongsTo) {
+        this.belongsTo = belongsTo;
+    }
+
+    public void setType(BoundaryType type) {
+        this.type = type;
     }
 }

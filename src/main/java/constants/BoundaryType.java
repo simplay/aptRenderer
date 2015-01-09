@@ -5,5 +5,5 @@ package constants;
  */
 public enum BoundaryType {
     START,
-    END;
+    END, BoundaryType;
 }
