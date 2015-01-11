@@ -1,6 +1,5 @@
 package intersectables;
 
-import base.Material;
 import base.Ray;
 import constants.BelongsTo;
 import constants.BoundaryType;
@@ -20,8 +19,16 @@ public class CSGNode extends CSGSolid {
     protected final CSGSolid right;
     protected final OperationType operationType;
 
-    public CSGNode(CSGSolid left, CSGSolid right, OperationType operationType, Material material) {
-        super(material);
+    /**
+     * Combine two two {@CSGSolid} instances, left and right, represented as a binary tree.
+     * Node becomes of the same Material as the {@param left} CSGSolid was.
+     *
+     * @param left          left instance
+     * @param right         right instance
+     * @param operationType how should they be combined
+     */
+    public CSGNode(CSGSolid left, CSGSolid right, OperationType operationType) {
+        super(left.getMaterial());
         this.left = left;
         this.right = right;
         this.operationType = operationType;
